@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Coach</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Optional for icons -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-brain"></i> AI Code Coach</h1>
+            <p>Your personal assistant for coding practice</p>
+        </header>
+
+        <main>
+            <!-- Step 1: Difficulty Selection -->
+            <div class="card" id="difficulty-selector">
+                <h2>Select Difficulty</h2>
+                <div class="slider-container">
+                    <span>Easy</span>
+                    <input type="range" min="1" max="10" value="5" class="slider" id="difficulty-slider">
+                    <span>Expert</span>
+                </div>
+                <p>Level: <span id="level-display">5</span></p>
+                <button id="generate-btn">Generate Problem</button>
+            </div>
+
+            <!-- This holds the generated problem and user solution -->
+            <div id="challenge-area" class="hidden">
+                <!-- Step 2: Problem Display -->
+                <div class="card" id="problem-display">
+                    <div id="problem-loader" class="loader-container hidden">
+                        <div class="loader"></div>
+                        <p>Generating your challenge...</p>
+                    </div>
+                    <div id="problem-content">
+                        <h2 id="problem-title"></h2>
+                        <p id="problem-description"></p>
+                        <h3>Examples</h3>
+                        <pre><code id="problem-examples"></code></pre>
+                    </div>
+                </div>
+
+                <!-- Step 3: Solution Input -->
+                <div class="card" id="solution-input">
+                    <h2>Your Solution (Python)</h2>
+                    <textarea id="solution-code" placeholder="Write your Python code here..." rows="15"></textarea>
+                    <button id="evaluate-btn">Submit & Evaluate</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Evaluation Display -->
+            <div class="card hidden" id="evaluation-display">
+                 <div id="evaluation-loader" class="loader-container hidden">
+                    <div class="loader"></div>
+                    <p>Evaluating your solution...</p>
+                </div>
+                <div id="evaluation-content">
+                    <h2>Evaluation</h2>
+                    <div class="score-circle">
+                        <span id="evaluation-score"></span>/20
+                    </div>
+                    <h3>Feedback & Tips</h3>
+                    <ul id="evaluation-tips"></ul>
+                    <h3>Suggested Solution</h3>
+                    <pre><code id="suggested-code" class="language-python"></code></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
